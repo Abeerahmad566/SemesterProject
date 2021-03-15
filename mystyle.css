@@ -10,24 +10,26 @@ body
 {
     padding: 60px;
     text-align: center;
-    background: black;
+    background: #5a748d;
     color: white;
   }  
-.navbar
+nav
 {
     display: flex;
     background-color:transparent;
   } 
-.navbar a
+nav a
  {
     color: black;
-    padding: 14px 20px;
+    padding: 20px 100px;
     text-decoration: none;
     text-align: center;
+    
+    
   }  
-.navbar a:hover 
+nav a:hover 
 {
-    background-color: black;
+  background-color:#5a748d;
     color: white;
   }
 .row 
@@ -45,20 +47,23 @@ body
     background-color: white;
     padding: 20px;
   }
- .main img {  
-    padding: 30px;
-  }
-  .main img:hover{
-    border: thin solid black;
-  }
+ 
 .footer {
     padding: 20px;
+    width: 100%;
     text-align: justify;
     background: #ddd;
   }
-  .p21u{
-    position: absolute;
-    left: 580px;
-    top: 490px;
+
+  .card
+  {
+    float: left;
+    margin: 10px;
+    border-radius: 2%;
   }
-  
+ .card:hover
+ {
+   background-color: #5a748d;
+ }
+ 
+
