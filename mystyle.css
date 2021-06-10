@@ -37,8 +37,9 @@ nav a:hover
     display: flex;
     flex-wrap: wrap;
   }
-  .side {
-    flex: 30%;
+.side {
+    
+    flex:20%;
     background-color: #f1f1f1;
     padding: 20px;
   }
@@ -61,14 +62,16 @@ nav a:hover
     margin: 10px;
     border-radius: 2%;
   }
- .card:hover
+  .card a:hover
+  {
+    text-decoration: none;
+    background-color:#d50000;
+  }
+ .card a
  {
-   background-color: #5a748d;
-   
- }
- .card p
- {
+   color: black;
    text-align: center;
+   
  }
  .footer img
  {
@@ -94,11 +97,12 @@ td:hover{
   background-color:#d50000 ;
 }
 .phonefinder {
-  display: block;
-  text-align: center;
+  padding: 10px;
+  display: inline-flex;
+ position: relative;
   text-decoration: none;
   color: black;
-  padding: 10px;
+  left: 9rem;
  
 }
 .phonefinder:hover
@@ -107,4 +111,22 @@ td:hover{
   text-decoration: none;
   color: black;
 }
-
+.overflowpics
+{
+  position: relative;
+  float: left;
+  height: 130px;
+  margin: 11px;
+}
+.overflowpics a{
+  text-decoration: none;
+  color: black;
+}
+.overflowpics a:hover{
+ 
+  color:#d50000 ;
+}
+.floatleft
+{
+  float: right;
+}
