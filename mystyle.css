@@ -64,6 +64,47 @@ nav a:hover
  .card:hover
  {
    background-color: #5a748d;
+   
  }
+ .card p
+ {
+   text-align: center;
+ }
+ .footer img
+ {
+   height: 50px;
+   border-radius: 50%;
+ }
+ table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+td:hover{
+  background-color:#d50000 ;
+}
+.phonefinder {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  padding: 10px;
  
+}
+.phonefinder:hover
+{
+  background-color: #d50000;
+  text-decoration: none;
+  color: black;
+}
 
