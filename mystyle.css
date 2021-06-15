@@ -1,84 +1,69 @@
 * {
-    box-sizing: border-box;
-  }
-body 
-{
-    font-family: Arial;
-    margin: 0;
-  }
-.header 
-{
-    padding: 60px;
-    text-align: center;
-    background: #5a748d;
-    color: white;
-  }  
-nav
-{
-    display: flex;
-    background-color:transparent;
-  } 
-nav a
- {
-    color: black;
-    padding: 20px 100px;
-    text-decoration: none;
-    text-align: center;
-    
-    
-  }  
-nav a:hover 
-{
-  background-color:#5a748d;
-
-  }
-.row 
-{  
-    display: flex;
-    flex-wrap: wrap;
-  }
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial;
+  margin: 0;
+}
+.header {
+  padding: 60px;
+  text-align: center;
+  background: #5a748d;
+  color: white;
+}
+nav {
+  display: flex;
+  background-color: transparent;
+}
+nav a {
+  color: black;
+  padding: 20px 100px;
+  text-decoration: none;
+  text-align: center;
+}
+nav a:hover {
+  background-color: #5a748d;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
 .side {
-    
-    flex:20%;
-    background-color: #f1f1f1;
-    padding: 20px;
-  }
-  .main {
-    flex: 70%;
-    background-color: white;
-    padding: 20px;
-  }
- 
-.footer {
-    padding: 20px;
-    width: 100%;
-    text-align: justify;
-    background: #ddd;
-  }
+  flex: 20%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+.main {
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+}
 
-  .card
-  {
-    float: left;
-    margin: 10px;
-    border-radius: 2%;
-  }
-  .card a:hover
-  {
-    text-decoration: none;
-    background-color:#d50000;
-  }
- .card a
- {
-   color: black;
-   text-align: center;
-   
- }
- .footer img
- {
-   height: 50px;
-   border-radius: 50%;
- }
- table {
+.footer {
+  padding: 20px;
+  width: 100%;
+  text-align: justify;
+  background: #ddd;
+}
+
+.card {
+  float: left;
+  margin: 10px;
+  border-radius: 2%;
+}
+.card a:hover {
+  text-decoration: none;
+  background-color: #d50000;
+}
+.card a {
+  color: black;
+  text-align: center;
+}
+.footer img {
+  height: 50px;
+  border-radius: 50%;
+}
+table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
@@ -88,15 +73,13 @@ td {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
-  
 }
 
 tr:nth-child(even) {
   background-color: #dddddd;
 }
-td:hover{
-  background-color:#d50000 ;
-  
+td:hover {
+  background-color: #d50000;
 }
 .phonefinder {
   padding: 10px;
@@ -106,37 +89,28 @@ td:hover{
   text-align: center;
   background-color: #5a748d;
   font: 1.1em sans-serif;
- 
 }
-.phonefinder:hover
-{
+.phonefinder:hover {
   background-color: #d50000;
   text-decoration: none;
   color: black;
 }
 
-.overflowpics
-{
+.overflowpics {
   position: relative;
   float: left;
   height: 130px;
   margin: 11px;
   padding: 20px;
 }
-.overflowpics a{
+.overflowpics a {
   text-decoration: none;
   color: black;
-  font: 700 13px Arial,sans-serif;
+  font: 700 13px Arial, sans-serif;
 }
-.overflowpics a:hover{
- 
-  color:#d50000 ;
+.overflowpics a:hover {
+  color: #d50000;
 }
-.floatleft
-{
- 
-float: right;
-  
- 
+.floatleft {
+  float: right;
 }
-
