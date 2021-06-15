@@ -43,7 +43,8 @@ nav a:hover {
   padding: 20px;
   width: 100%;
   text-align: justify;
-  background: #ddd;
+  background: #5a748d;
+  color: white;
 }
 
 .card {
@@ -113,4 +114,7 @@ td:hover {
 }
 .floatleft {
   float: right;
+}
+.form-group {
+  padding-left: 10%;
 }
