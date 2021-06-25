@@ -44,6 +44,9 @@ $(function () {
   loadPOCO();
   $("#POCO").on("click", ".deletePOCO", handleDeletePOCO);
   $("#AddPOCORecord").click(addRecordPOCO);
+  loadRealme();
+  $("#Realme").on("click", ".deleteRealme", handleDeleteRealme);
+  $("#AddRealmeRecord").click(addRecordRealme);
 });
 const isloggedin = Boolean(window.localStorage.getItem("token"));
 function logout ()
@@ -1628,3 +1631,121 @@ function handleDeletePOCO() {
       }
     });
 }
+function addRecordRealme()
+{
+  var name = $("#addnameRealme").val();
+  var Price = $("#addPriceRealme").val();
+  var picture= $("#addPictureRealme").val();
+  var technology= $("#addTechnologyRealme").val();
+  var Announced= $("#addAnnouncedRealme").val();
+  var Dimension= $("#addDimensionRealme").val();
+  var Weight= $("#addWeightRealme").val();
+  var Build= $("#addBuildRealme").val();
+  var Sim= $("#addSimRealme").val();
+  var Type= $("#addDisplayTypeRealme").val();
+  var Size= $("#addDisplaySizeRealme").val();
+  var Resolution= $("#addResolutionRealme").val();
+  var Os = $("#addOsRealme").val();
+  var Chipset= $("#addChipsetRealme").val();
+  var Cpu= $("#addCPURealme").val();
+  var FrontCamera= $("#addSelfieCameraRealme").val();
+  var Gpu= $("#addGPURealme").val();
+  var CardSlot= $("#addCardSlotRealme").val();
+  var Internal= $("#addInternalStorageRealme").val();
+  var Camera= $("#addMainCameraRealme").val();
+  var Sound= $("#addSoundsRealme").val();
+  var Comms= $("#addCommsRealme").val();
+  var Features= $("#addSensorFeaturesRealme").val();
+  var Battery= $("#addBatteryRealme").val();
+  var Colors= $("#addColorsRealme").val();
+  var mcamFeatures= $("#addMainCameraFeaturesRealme").val();
+  var mcamVideo= $("#addMainCameraVideoRealme").val();
+  var ScamFeatures= $("#addSelfieCameraFeaturesRealme").val();
+  var ScamVideo= $("#addSelfieCameraVideoRealme").val();
+  var Bluetooth= $("#addBluetoothRealme").val();
+  var NFC= $("#addNFCRealme").val();
+  var Radio= $("#addRadioRealme").val();
+  var GPS= $("#addGPSRealme").val();
+  var Charging= $("#addChargingRealme").val();
+  $.ajax({
+          url:"https://abeertech-serverside.herokuapp.com/api/Realme",
+          method:"POST",
+          data:{ name, Price,picture,technology,Announced,Dimension,Weight,Build,Sim,Type,Size,Resolution,Os,Chipset,Cpu,Gpu,FrontCamera,CardSlot,Internal,Camera,Sound,Comms,Features,Battery,Colors,mcamFeatures,mcamVideo,ScamFeatures,ScamVideo,Bluetooth,NFC,Radio,GPS,Charging },
+          success:function(){
+            
+           $( "div.addrecord" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+            
+          }
+  });
+
+}
+function loadRealme() {
+  $.ajax({
+    url: "https://abeertech-serverside.herokuapp.com/api/Realme",
+    method: "GET",
+    success: function(response) {
+      var phones = $("#Realme");
+      phones.empty(); 
+      for (var i = 0; i < response.length; i++) {
+        var rec = response[i];
+        
+      phones.append(
+          "<div class='card' data-id="+rec._id+"><img class='card-img-top' src="+rec.picture+"> <a class='gosomewhere'>"+rec.name+"</a> </div></div>"
+        ); 
+      }
+      $('.gosomewhere').click(function()
+      {
+        var iddd=$(this).closest('.card').attr('data-id');
+        loadonIDRealme(iddd);
+
+});
+    }
+  });
+}
+function loadonIDRealme(id)
+  {
+    if(isloggedin)
+    {
+      $.ajax({
+        url: "https://abeertech-serverside.herokuapp.com/api/Realme/"+id,
+        method: "GET",
+        success: function(response) {
+          var phones = $("#Realme");
+          phones.empty();
+          console.log(response._id);
+          phones.append(
+            "<div class='PicturesPhoneRealme ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><button  class='btn btn-danger btn-sm float-right deleteRealme'>delete</button><button class='btn btn-warning btn-sm float-right editRealme'>Edit</button><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
+          );     
+    }
+  });
+    }
+    if(!isloggedin)
+    {
+      $.ajax({
+        url: "https://abeertech-serverside.herokuapp.com/api/Realme/"+id,
+        method: "GET",
+        success: function(response) {
+          var phones = $("#Realme");
+          phones.empty();
+          console.log(response._id);
+          phones.append(
+            "<div class='PicturesPhoneRealme ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
+          );     
+    }
+  });
+    }
+  }
+  
+function handleDeleteRealme() {
+    var btn = $(this);
+    var parentDiv = btn.closest(".PicturesPhoneRealme  ");
+    let id = parentDiv.attr("data-id");
+    $.ajax({
+      url: "https://abeertech-serverside.herokuapp.com/api/Realme/" + id,
+      method: "DELETE",
+      success: function() {
+        $( "div.delete" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+        loadRealme();
+      }
+    });
+  }
