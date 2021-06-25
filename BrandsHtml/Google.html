@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Google Phone's- AbeerTech - mobile phones specification </title>
+    <link rel = "icon" href = "/images/logo.JPG" 
+        type = "image/x-icon"> 
+        <script src="/Javafiles/jquery-3.4.1.min.js"></script>
+        <script>src = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"</script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="/Javafiles/jscurd.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+        crossorigin="anonymous">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+       <link rel="stylesheet" href="/mystyle.css">
+       <script src="https://kit.fontawesome.com/c95d411d8a.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+     <img src="/images/cover.jpg" style="width: 100%;" alt="">
+   
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/MainPages/main.html">AbeerTech</a>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/MainPages/main.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/BrandsHtml/Apple.html">IPhones</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/MainPages/AllBrands.html">All Brands</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/MainPages/Contactus.html">Contact Us</a>
+          </li>
+        </ul>
+        <a id="login" href="/MainPages/login.html"style="text-decoration: none ; color:black;" >Admin Login</a>
+
+        <a id="logout" href="" style="text-decoration: none;color:black;">Logout</a>
+      </div>
+      </nav>
+  
+    <div class="row">
+    <div class="side">
+      
+      <table>
+        <a  href="/MainPages/AllBrands.html" class="phonefinder"><i class="fas fa-mobile-alt"></i> Phone Finder</a>
+        <tr>
+          <div class="removetd">
+         <td><a href="/BrandsHtml/samsung.html">Samsung</a></td>
+         <td><a href="/BrandsHtml/Apple.html">Apple</a></td>
+         <td><a href="/BrandsHtml/vivo.html">Vivo</a></td>
+       </tr>
+       <tr>
+         <td><a href="/BrandsHtml/Xiaomi.html">Xiaomi</a></td>
+         <td><a href="/BrandsHtml/Asus.html">Asus</a></td>
+         <td><a href="/BrandsHtml/Realme.html">Realme</a></td>
+       </tr>
+       <tr>
+         <td><a href="/BrandsHtml/Google.html">Google</a></td>
+         <td><a href="/BrandsHtml/OnePlus.html">Oneplus</a></td>
+         <td><a href="/BrandsHtml/ZTE.html">Zte</a></td>
+       </tr>
+       <tr>
+         <td><a href="/BrandsHtml/Huawei.html">Huawei</a></td>
+         <td><a href="/BrandsHtml/Motorola.html">Motorola</a></td>
+         <td><a href="/BrandsHtml/Techno.html">Techno</a></td>
+       </tr>
+       <tr>
+         <td><a href="/BrandsHtml/Noki.html">Nokia</a></td>
+         <td><a href="/BrandsHtml/Oppo.html">Oppo</a></td>
+         <td><a href="/BrandsHtml/Poco.html">Poco</a></td>
+       </tr>
+       <tr>
+         <td><a href="/BrandsHtml/LG.html">LG</a></td>
+         <td><a href="/BrandsHtml/HTC.html">HTC</a></td>
+         <td><a href="/BrandsHtml/Lenovo.html">Lenovo</a></td>
+       
+       </tr>
+     </table>
+   
+    </div>
+    <div class="main">
+      <div style="background-image: url('/images//google.jpg'); height:200px ;background-repeat: no-repeat, repeat;">
+        <h1 id="brandnames" style="color: white;text-shadow: 3px 3px 3px rgb(0 0 0 / 80%);margin-left: 10px;">
+          Gooogle Phones
+        </h1>
+      </div>
+      <button class="btn btn-info" style="position: relative;float: right;bottom: 40px;" onclick="document.getElementById('addGoogleid01').style.display='block';">Add New Record</button>
+<div class="alert-box delete">Record has Been Deleted !!!</div>
+      <div id="Google">
+        Loading ...
+    </div>
+   
+    <div id="addGoogleid01" class="w3-modal">
+      <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+  
+        <div class="w3-center"><br>
+          <span onclick="document.getElementById('addGoogleid01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+          <Label style="font-size:larger; font-weight: bold;" >Add New Record</Label>
+        </div>
+  
+        <form class="w3-container">
+          <div class="w3-section">
+            <input id="addidGoogle" type="hidden">
+            <label><b>Name</b></label>
+            <input id="addnameGoogle" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Name" name="addname" 
+             required>
+            <label><b>Price</b></label>
+            <input id="addPriceGoogle" class="w3-input w3-border" type="text" placeholder="Enter  Price" name="addprice" 
+             required>
+             <label><b>Picture</b></label>
+            <input id="addPictureGoogle" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter URL of Picture" name="addPictureGoogle" 
+             required>
+            <label><b>Technology</b></label>
+            <input id="addTechnologyGoogle" class="w3-input w3-border" type="text" placeholder="Enter Technology" name="addTechnologyGoogle" 
+             required>
+             <label><b>Announced</b></label>
+            <input id="addAnnouncedGoogle" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Announced Date" name="addAnnouncedGoogle" 
+             required>
+            <label><b>Dimension</b></label>
+            <input id="addDimensionGoogle" class="w3-input w3-border" type="text" placeholder="Enter Dimensions" name="addDimensionsGoogle" 
+             required>
+             <label><b>Build</b></label>
+            <input id="addBuildGoogle" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Build" name="addBuildGoogle" 
+             required>
+            <label><b>Weight</b></label>
+            <input id="addWeightGoogle" class="w3-input w3-border" type="text" placeholder="Enter Weight" name="addWeightGoogle" 
+             required>
+             <label><b>Sim</b></label>
+            <input id="addSimGoogle" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Sim Details" name="addSimGoogle" 
+             required>
+            <label><b>Display Type</b></label>
+            <input id="addDisplayTypeGoogle" class="w3-input w3-border" type="text" placeholder="Enter Display Type" name="addDisplayTypeGoogle" 
+             required>
+             <label><b>Display Size</b></label>
+            <input id="addDisplaySizeGoogle" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Display Size" name="addDisplaySizeGoogle" 
+             required>
+            <label><b>Resolution</b></label>
+            <input id="addResolutionGoogle" class="w3-input w3-border" type="text" placeholder="Enter Resolution" name="addResolutionGoogle" 
+             required>
+             <label><b>Os</b></label>
+            <input id="addOsGoogle" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter OS" name="addOsGoogle" 
+             required>
+            <label><b>Chipset</b></label>
+            <input id="addChipsetGoogle" class="w3-input w3-border" type="text" placeholder="Enter Chipset" name="addChipsetGoogle" 
+             required>
+             <label><b>CPU</b></label>
+            <input id="addCPUGoogle" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter CPU" name="addCPUGoogle" 
+             required>
+            <label><b>GPU</b></label>
+            <input id="addGPUGoogle" class="w3-input w3-border" type="text" placeholder="Enter GPU" name="addGPUGoogle" 
+             required>
+             <label><b>CardSlot</b></label>
+            <input id="addCardSlotGoogle" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter CardSlot" name="addCardSlotGoogle" 
+             required>
+            <label><b>Internal Storage</b></label>
+            <input id="addInternalStorageGoogle" class="w3-input w3-border" type="text" placeholder="Enter Internal Storage" name="addInternalStorageGoogle"
+             required>
+             <label><b>Main Camera</b></label>
+            <input id="addMainCameraGoogle" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Main Camera Details" name="addMainCameraGoogle" 
+             required>
+            <label><b>Main Camera Features</b></label>
+            <input id="addMainCameraFeaturesGoogle" class="w3-input w3-border" type="text" placeholder="Enter Main Camera Features" name="addMainCameraFeaturesGoogle" 
+             required>
+             <label><b>Main Camera Video</b></label>
+            <input id="addMainCameraVideoGoogle" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Main Camera Video Details" name="addMainCameraVideoGoogle" 
+             required>
+            <label><b>Selfie Camera</b></label>
+            <input id="addSelfieCameraGoogle" class="w3-input w3-border" type="text" placeholder="Enter Selfie Camera Details" name="addSelfieCameraGoogle" 
+             required>
+             <label><b>Selfie Camera Features</b></label>
+            <input id="addSelfieCameraFeaturesGoogle" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Selfie Camera Features" name="addSelfieCameraFeaturesGoogle" 
+             required>
+            <label><b>Selfie Camera Video</b></label>
+            <input id="addSelfieCameraVideoGoogle" class="w3-input w3-border" type="text" placeholder="Enter Selfie Camera Video Details" name="addSelfieCameraVideoGoogle" 
+             required>
+             <label><b>Sound</b></label>
+            <input id="addSoundsGoogle" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Sound Details" name="addSoundsGoogle" 
+             required>
+             <label><b>WLAN</b></label>
+            <input id="addCommsGoogle" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter WLAN" name="addCommsGoogle" 
+             required>
+            <label><b>Sensor Features</b></label>
+            <input id="addSensorFeaturesGoogle" class="w3-input w3-border" type="text" placeholder="Enter Sensor Features" name="addSensorFeaturesGoogle" 
+             required>
+             <label><b>Battery</b></label>
+            <input id="addBatteryGoogle" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Battery Details" name="addBatteryGoogle" 
+             required>
+            <label><b>Charging</b></label>
+            <input id="addChargingGoogle" class="w3-input w3-border" type="text" placeholder="Enter Charging Details" name="addChargingGoogle" 
+             required>
+             <label><b>Bluetooth</b></label>
+            <input id="addBluetoothGoogle" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Bluetooth DEtails" name="addBluetoothGoogle" 
+             required>
+            <label><b>NFC</b></label>
+            <input id="addNFCGoogle" class="w3-input w3-border" type="text" placeholder="Enter NFC Details" name="addNFCGoogle" 
+             required>
+             <label><b>Radio</b></label>
+            <input id="addRadioGoogle" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Radio Details" name="addRadioGoogle" 
+             required>
+            <label><b>GPS</b></label>
+            <input id="addGPSGoogle" class="w3-input w3-border" type="text" placeholder="Enter GPS Details" name="addGPSGoogle" 
+             required>
+             <label><b>Colors</b></label>
+            <input id="addColorsGoogle" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Colors" name="addColorsGoogle" 
+             required>
+            <button id="AddGoogleRecord" class="btn btn-primary" >Add Record</button>
+          </div>
+        </form>
+      </div>
+      <!--modal div-->
+    </div>
+    
+<!--main div-->
+    </div>
+    <!--row div-->
+</div>
+    <div class="footer">
+      <p>Designed by Abeer Ahmed</p>
+      <img src="/images/me.jpg" style="height: 150px;" alt="">
+    <div class="floatleft">
+      <p>Visit us at:</p>
+      <a href="https://www.facebook.com/" target="_blank">
+      <img src="/images/fb.jpg" >
+      </a>
+      <a href="https://www.twitter.com/" target="_blank">
+      <img src="/images/twitter.jpg" >
+      </a>
+      <a href="https://www.instagram.com/" target="_blank">
+      <img src="/images/insta.jpg" >
+      </a>
+    </div>
+      <p>Copyright © AbeerTech 2021</p>
+    </div>  
+  </body>
+</html>

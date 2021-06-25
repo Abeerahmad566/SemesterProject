@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Iphone's- AbeerTech - mobile phones specification </title>
+    <link rel = "icon" href = "/images/logo.JPG" 
+        type = "image/x-icon"> 
+        <script src="/Javafiles/jquery-3.4.1.min.js"></script>
+        <script>src = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"</script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="/Javafiles/jscurd.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+        crossorigin="anonymous">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+       <link rel="stylesheet" href="/mystyle.css">
+       <script src="https://kit.fontawesome.com/c95d411d8a.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+     <img src="/images/cover.jpg" style="width: 100%;" alt="">
+   
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/MainPages/main.html">AbeerTech</a>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/MainPages/main.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/BrandsHtml/Apple.html">IPhones</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/MainPages/AllBrands.html">All Brands</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/MainPages/Contactus.html">Contact Us</a>
+          </li>
+        </ul>
+        <a id="login" href="/MainPages/login.html"style="text-decoration: none ; color:black;" >Admin Login</a>
+
+        <a id="logout" href="" style="text-decoration: none;color:black;">Logout</a>
+      </div>
+      </nav>
+  
+    <div class="row">
+    <div class="side">
+      
+      <table>
+        <a  href="/MainPages/AllBrands.html" class="phonefinder"><i class="fas fa-mobile-alt"></i> Phone Finder</a>
+        <tr>
+          <div class="removetd">
+         <td><a href="/BrandsHtml/samsung.html">Samsung</a></td>
+         <td><a  href="/BrandsHtml/Apple.html">Apple</a></td>
+         <td><a href="/BrandsHtml/vivo.html">Vivo</a></td>
+       </tr>
+       <tr>
+         <td><a href="/BrandsHtml/Xiaomi.html">Xiaomi</a></td>
+         <td><a href="/BrandsHtml/Asus.html">Asus</a></td>
+         <td><a href="/BrandsHtml/Realme.html">Realme</a></td>
+       </tr>
+       <tr>
+         <td><a href="/BrandsHtml/Google.html">Google</a></td>
+         <td><a href="/BrandsHtml/OnePlus.html">Oneplus</a></td>
+         <td><a href="/BrandsHtml/ZTE.html">Zte</a></td>
+       </tr>
+       <tr>
+         <td><a href="/BrandsHtml/Huawei.html">Huawei</a></td>
+         <td><a href="/BrandsHtml/Motorola.html">Motorola</a></td>
+         <td><a href="/BrandsHtml/Techno.html">Techno</a></td>
+       </tr>
+       <tr>
+         <td><a href="/BrandsHtml/Noki.html">Nokia</a></td>
+         <td><a href="/BrandsHtml/Oppo.html">Oppo</a></td>
+         <td><a href="/BrandsHtml/Poco.html">Poco</a></td>
+       </tr>
+       <tr>
+         <td><a href="/BrandsHtml/LG.html">LG</a></td>
+         <td><a href="/BrandsHtml/HTC.html">HTC</a></td>
+         <td><a href="/BrandsHtml/Lenovo.html">Lenovo</a></td>
+       
+       </tr>
+     </table>
+    
+    </div>
+    <div class="main">
+      <div style="background-image: url('/images/iphone.jpg'); height:200px ; background-repeat: no-repeat, repeat;">
+        <h1 id="brandnames" style="color: white;text-shadow: 3px 3px 3px rgb(0 0 0 / 80%);margin-left: 10px;">
+          IPhones
+        </h1>
+    </div>
+    <button class="btn btn-info" style="position: relative;float: right;bottom: 40px;" onclick="document.getElementById('addAppleid01').style.display='block';">Add New Record</button>
+<div class="alert-box delete">Record has Been Deleted !!!</div>
+      <div id="Apple">
+        Loading ...
+    </div>
+
+    <div id="UpdateAppleid01" class="w3-modal">
+      <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+  
+        <div class="w3-center"><br>
+          <span onclick="document.getElementById('UpdateAppleid01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+          <Label style="font-size:larger; font-weight: bold;" >Update New Record</Label>
+        </div>
+  
+        <form class="w3-container">
+          <div class="w3-section">
+            <input id="UpdateidApple" type="hidden">
+            <label><b>Name</b></label>
+            <input id="UpdatenameApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Name" name="Updatename" 
+             required>
+            <label><b>Price</b></label>
+            <input id="UpdatePriceApple" class="w3-input w3-border" type="text" placeholder="Enter  Price" name="Updateprice" 
+             required>
+             <label><b>Picture</b></label>
+            <input id="UpdatePictureApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter URL of Picture" name="UpdatePictureApple" 
+             required>
+            <label><b>Technology</b></label>
+            <input id="UpdateTechnologyApple" class="w3-input w3-border" type="text" placeholder="Enter Technology" name="UpdateTechnologyApple" 
+             required>
+             <label><b>Announced</b></label>
+            <input id="UpdateAnnouncedApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Announced Date" name="UpdateAnnouncedApple" 
+             required>
+            <label><b>Dimension</b></label>
+            <input id="UpdateDimensionApple" class="w3-input w3-border" type="text" placeholder="Enter Dimensions" name="UpdateDimensionsApple" 
+             required>
+             <label><b>Build</b></label>
+            <input id="UpdateBuildApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Build" name="UpdateBuildApple" 
+             required>
+            <label><b>Weight</b></label>
+            <input id="UpdateWeightApple" class="w3-input w3-border" type="text" placeholder="Enter Weight" name="UpdateWeightApple" 
+             required>
+             <label><b>Sim</b></label>
+            <input id="UpdateSimApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Sim Details" name="UpdateSimApple" 
+             required>
+            <label><b>Display Type</b></label>
+            <input id="UpdateDisplayTypeApple" class="w3-input w3-border" type="text" placeholder="Enter Display Type" name="UpdateDisplayTypeApple" 
+             required>
+             <label><b>Display Size</b></label>
+            <input id="UpdateDisplaySizeApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Display Size" name="UpdateDisplaySizeApple" 
+             required>
+            <label><b>Resolution</b></label>
+            <input id="UpdateResolutionApple" class="w3-input w3-border" type="text" placeholder="Enter Resolution" name="UpdateResolutionApple" 
+             required>
+             <label><b>Os</b></label>
+            <input id="UpdateOsApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter OS" name="UpdateOsApple" 
+             required>
+            <label><b>Chipset</b></label>
+            <input id="UpdateChipsetApple" class="w3-input w3-border" type="text" placeholder="Enter Chipset" name="UpdateChipsetApple" 
+             required>
+             <label><b>CPU</b></label>
+            <input id="UpdateCPUApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter CPU" name="UpdateCPUApple" 
+             required>
+            <label><b>GPU</b></label>
+            <input id="UpdateGPUApple" class="w3-input w3-border" type="text" placeholder="Enter GPU" name="UpdateGPUApple" 
+             required>
+             <label><b>CardSlot</b></label>
+            <input id="UpdateCardSlotApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter CardSlot" name="UpdateCardSlotApple" 
+             required>
+            <label><b>Internal Storage</b></label>
+            <input id="UpdateInternalStorageApple" class="w3-input w3-border" type="text" placeholder="Enter Internal Storage" name="UpdateInternalStorageApple"
+             required>
+             <label><b>Main Camera</b></label>
+            <input id="UpdateMainCameraApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Main Camera Details" name="UpdateMainCameraApple" 
+             required>
+            <label><b>Main Camera Features</b></label>
+            <input id="UpdateMainCameraFeaturesApple" class="w3-input w3-border" type="text" placeholder="Enter Main Camera Features" name="UpdateMainCameraFeaturesApple" 
+             required>
+             <label><b>Main Camera Video</b></label>
+            <input id="UpdateMainCameraVideoApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Main Camera Video Details" name="UpdateMainCameraVideoApple" 
+             required>
+            <label><b>Selfie Camera</b></label>
+            <input id="UpdateSelfieCameraApple" class="w3-input w3-border" type="text" placeholder="Enter Selfie Camera Details" name="UpdateSelfieCameraApple" 
+             required>
+             <label><b>Selfie Camera Features</b></label>
+            <input id="UpdateSelfieCameraFeaturesApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Selfie Camera Features" name="UpdateSelfieCameraFeaturesApple" 
+             required>
+            <label><b>Selfie Camera Video</b></label>
+            <input id="UpdateSelfieCameraVideoApple" class="w3-input w3-border" type="text" placeholder="Enter Selfie Camera Video Details" name="UpdateSelfieCameraVideoApple" 
+             required>
+             <label><b>Sound</b></label>
+            <input id="UpdateSoundsApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Sound Details" name="UpdateSoundsApple" 
+             required>
+             <label><b>WLAN</b></label>
+            <input id="UpdateCommsApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter WLAN" name="UpdateCommsApple" 
+             required>
+            <label><b>Sensor Features</b></label>
+            <input id="UpdateSensorFeaturesApple" class="w3-input w3-border" type="text" placeholder="Enter Sensor Features" name="UpdateSensorFeaturesApple" 
+             required>
+             <label><b>Battery</b></label>
+            <input id="UpdateBatteryApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Battery Details" name="UpdateBatteryApple" 
+             required>
+            <label><b>Charging</b></label>
+            <input id="UpdateChargingApple" class="w3-input w3-border" type="text" placeholder="Enter Charging Details" name="UpdateChargingApple" 
+             required>
+             <label><b>Bluetooth</b></label>
+            <input id="UpdateBluetoothApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Bluetooth DEtails" name="UpdateBluetoothApple" 
+             required>
+            <label><b>NFC</b></label>
+            <input id="UpdateNFCApple" class="w3-input w3-border" type="text" placeholder="Enter NFC Details" name="UpdateNFCApple" 
+             required>
+             <label><b>Radio</b></label>
+            <input id="UpdateRadioApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Radio Details" name="UpdateRadioApple" 
+             required>
+            <label><b>GPS</b></label>
+            <input id="UpdateGPSApple" class="w3-input w3-border" type="text" placeholder="Enter GPS Details" name="UpdateGPSApple" 
+             required>
+             <label><b>Colors</b></label>
+            <input id="UpdateColorsApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Colors" name="UpdateColorsApple" 
+             required>
+            <button id="UpdateAppleRecord" class="btn btn-primary" >Update Record</button>
+          </div>
+        </form>
+      </div>
+    </div>
+   
+    <div id="addAppleid01" class="w3-modal">
+      <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+  
+        <div class="w3-center"><br>
+          <span onclick="document.getElementById('addAppleid01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+          <Label style="font-size:larger; font-weight: bold;" >Add New Record</Label>
+        </div>
+  
+        <form class="w3-container">
+          <div class="w3-section">
+            <input id="addidApple" type="hidden">
+            <label><b>Name</b></label>
+            <input id="addnameApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Name" name="addname" 
+             required>
+            <label><b>Price</b></label>
+            <input id="addPriceApple" class="w3-input w3-border" type="text" placeholder="Enter  Price" name="addprice" 
+             required>
+             <label><b>Picture</b></label>
+            <input id="addPictureApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter URL of Picture" name="addPictureApple" 
+             required>
+            <label><b>Technology</b></label>
+            <input id="addTechnologyApple" class="w3-input w3-border" type="text" placeholder="Enter Technology" name="addTechnologyApple" 
+             required>
+             <label><b>Announced</b></label>
+            <input id="addAnnouncedApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Announced Date" name="addAnnouncedApple" 
+             required>
+            <label><b>Dimension</b></label>
+            <input id="addDimensionApple" class="w3-input w3-border" type="text" placeholder="Enter Dimensions" name="addDimensionsApple" 
+             required>
+             <label><b>Build</b></label>
+            <input id="addBuildApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Build" name="addBuildApple" 
+             required>
+            <label><b>Weight</b></label>
+            <input id="addWeightApple" class="w3-input w3-border" type="text" placeholder="Enter Weight" name="addWeightApple" 
+             required>
+             <label><b>Sim</b></label>
+            <input id="addSimApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Sim Details" name="addSimApple" 
+             required>
+            <label><b>Display Type</b></label>
+            <input id="addDisplayTypeApple" class="w3-input w3-border" type="text" placeholder="Enter Display Type" name="addDisplayTypeApple" 
+             required>
+             <label><b>Display Size</b></label>
+            <input id="addDisplaySizeApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Display Size" name="addDisplaySizeApple" 
+             required>
+            <label><b>Resolution</b></label>
+            <input id="addResolutionApple" class="w3-input w3-border" type="text" placeholder="Enter Resolution" name="addResolutionApple" 
+             required>
+             <label><b>Os</b></label>
+            <input id="addOsApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter OS" name="addOsApple" 
+             required>
+            <label><b>Chipset</b></label>
+            <input id="addChipsetApple" class="w3-input w3-border" type="text" placeholder="Enter Chipset" name="addChipsetApple" 
+             required>
+             <label><b>CPU</b></label>
+            <input id="addCPUApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter CPU" name="addCPUApple" 
+             required>
+            <label><b>GPU</b></label>
+            <input id="addGPUApple" class="w3-input w3-border" type="text" placeholder="Enter GPU" name="addGPUApple" 
+             required>
+             <label><b>CardSlot</b></label>
+            <input id="addCardSlotApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter CardSlot" name="addCardSlotApple" 
+             required>
+            <label><b>Internal Storage</b></label>
+            <input id="addInternalStorageApple" class="w3-input w3-border" type="text" placeholder="Enter Internal Storage" name="addInternalStorageApple"
+             required>
+             <label><b>Main Camera</b></label>
+            <input id="addMainCameraApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Main Camera Details" name="addMainCameraApple" 
+             required>
+            <label><b>Main Camera Features</b></label>
+            <input id="addMainCameraFeaturesApple" class="w3-input w3-border" type="text" placeholder="Enter Main Camera Features" name="addMainCameraFeaturesApple" 
+             required>
+             <label><b>Main Camera Video</b></label>
+            <input id="addMainCameraVideoApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Main Camera Video Details" name="addMainCameraVideoApple" 
+             required>
+            <label><b>Selfie Camera</b></label>
+            <input id="addSelfieCameraApple" class="w3-input w3-border" type="text" placeholder="Enter Selfie Camera Details" name="addSelfieCameraApple" 
+             required>
+             <label><b>Selfie Camera Features</b></label>
+            <input id="addSelfieCameraFeaturesApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Selfie Camera Features" name="addSelfieCameraFeaturesApple" 
+             required>
+            <label><b>Selfie Camera Video</b></label>
+            <input id="addSelfieCameraVideoApple" class="w3-input w3-border" type="text" placeholder="Enter Selfie Camera Video Details" name="addSelfieCameraVideoApple" 
+             required>
+             <label><b>Sound</b></label>
+            <input id="addSoundsApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Sound Details" name="addSoundsApple" 
+             required>
+             <label><b>WLAN</b></label>
+            <input id="addCommsApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter WLAN" name="addCommsApple" 
+             required>
+            <label><b>Sensor Features</b></label>
+            <input id="addSensorFeaturesApple" class="w3-input w3-border" type="text" placeholder="Enter Sensor Features" name="addSensorFeaturesApple" 
+             required>
+             <label><b>Battery</b></label>
+            <input id="addBatteryApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Battery Details" name="addBatteryApple" 
+             required>
+            <label><b>Charging</b></label>
+            <input id="addChargingApple" class="w3-input w3-border" type="text" placeholder="Enter Charging Details" name="addChargingApple" 
+             required>
+             <label><b>Bluetooth</b></label>
+            <input id="addBluetoothApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Bluetooth DEtails" name="addBluetoothApple" 
+             required>
+            <label><b>NFC</b></label>
+            <input id="addNFCApple" class="w3-input w3-border" type="text" placeholder="Enter NFC Details" name="addNFCApple" 
+             required>
+             <label><b>Radio</b></label>
+            <input id="addRadioApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Radio Details" name="addRadioApple" 
+             required>
+            <label><b>GPS</b></label>
+            <input id="addGPSApple" class="w3-input w3-border" type="text" placeholder="Enter GPS Details" name="addGPSApple" 
+             required>
+             <label><b>Colors</b></label>
+            <input id="addColorsApple" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Colors" name="addColorsApple" 
+             required>
+            <button id="AddAppleRecord" class="btn btn-primary" >Add Record</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!--modal div-->
+    </div>
+   <!--main div-->
+   </div>
+   <!--row dov-->
+
+    <div class="footer">
+      <p>Designed by Abeer Ahmed</p>
+      <img src="/images/me.jpg" style="height: 150px;" alt="">
+    <div class="floatleft">
+      <p>Visit us at:</p>
+      <a href="https://www.facebook.com/" target="_blank">
+      <img src="/images/fb.jpg" >
+      </a>
+      <a href="https://www.twitter.com/" target="_blank">
+      <img src="/images/twitter.jpg" >
+      </a>
+      <a href="https://www.instagram.com/" target="_blank">
+      <img src="/images/insta.jpg" >
+      </a>
+    </div>
+      <p>Copyright © AbeerTech 2021</p>
+    </div>  
+  </body>
+</html>

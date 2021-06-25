@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Samsung Phones- AbeerTech - mobile phones specification </title>
+    <link rel = "icon" href = "/images/logo.JPG" 
+        type = "image/x-icon"> 
+        <script src="/Javafiles/jquery-3.4.1.min.js"></script>
+        <script>src = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"</script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="/Javafiles/jscurd.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+        crossorigin="anonymous">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+       <link rel="stylesheet" href="/mystyle.css">
+       <script src="https://kit.fontawesome.com/c95d411d8a.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+     <img src="/images/cover.jpg" style="width: 100%;" alt="">
+   
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/MainPages/main.html">AbeerTech</a>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/MainPages/main.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/BrandsHtml/Apple.html">IPhones</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/MainPages/AllBrands.html">All Brands</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/MainPages/Contactus.html">Contact Us</a>
+          </li>
+        </ul>
+        <a id="login" href="/MainPages/login.html"style="text-decoration: none ; color:black;" >Admin Login</a>
+
+        <a id="logout" href="" style="text-decoration: none;color:black;">Logout</a>
+      </div>
+      </nav>
+  
+    <div class="row">
+    <div class="side">
+      
+      <table>
+        <a  href="/MainPages/AllBrands.html" class="phonefinder"><i class="fas fa-mobile-alt"></i> Phone Finder</a>
+        <tr>
+          <div class="removetd">
+         <td><a href="/BrandsHtml/samsung.html">Samsung</a></td>
+         <td><a href="/BrandsHtml/Apple.html">Apple</a></td>
+         <td><a href="/BrandsHtml/vivo.html">Vivo</a></td>
+       </tr>
+       <tr>
+         <td><a href="/BrandsHtml/Xiaomi.html">Xiaomi</a></td>
+         <td><a href="/BrandsHtml/Asus.html">Asus</a></td>
+         <td><a href="/BrandsHtml/Realme.html">Realme</a></td>
+       </tr>
+       <tr>
+         <td><a href="/BrandsHtml/Google.html">Google</a></td>
+         <td><a href="/BrandsHtml/OnePlus.html">Oneplus</a></td>
+         <td><a href="/BrandsHtml/ZTE.html">Zte</a></td>
+       </tr>
+       <tr>
+         <td><a href="/BrandsHtml/Huawei.html">Huawei</a></td>
+         <td><a href="/BrandsHtml/Motorola.html">Motorola</a></td>
+         <td><a href="/BrandsHtml/Techno.html">Techno</a></td>
+       </tr>
+       <tr>
+         <td><a href="/BrandsHtml/Noki.html">Nokia</a></td>
+         <td><a href="/BrandsHtml/Oppo.html">Oppo</a></td>
+         <td><a href="/BrandsHtml/Poco.html">Poco</a></td>
+       </tr>
+       <tr>
+         <td><a href="/BrandsHtml/LG.html">LG</a></td>
+         <td><a href="/BrandsHtml/HTC.html">HTC</a></td>
+         <td><a href="/BrandsHtml/Lenovo.html">Lenovo</a></td>
+       
+       </tr>
+     </table>
+    
+   
+    </div>
+    
+
+    <div class="main">
+     <div style="background-image: url('/images/samsung.jpg'); height:200px ;background-repeat: no-repeat, repeat;">
+        <h1 id="brandnames" style="color:honeydew;text-shadow: 3px 3px 3px rgb(0 0 0 / 80%);margin-left: 10px">
+          Samsung Phones  
+        </h1>  
+</div>
+<button id="addbtnsam" class="btn btn-info" style="position: relative;float: right;bottom: 40px;" onclick="document.getElementById('addSamsungid01').style.display='block';">Add New Record</button>
+<div class="alert-box delete">Record has Been Deleted !!!</div>
+      <div id="Samsung">
+        Loading ...
+    </div>
+  
+    <div id="editSamsungid01" class="w3-modal">
+      <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+  
+        <div class="w3-center"><br>
+          <span onclick="document.getElementById('editSamsungid01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+          <Label style="font-size:larger; font-weight: bold;" >Edit New Record</Label>
+        </div>
+  
+        <form class="w3-container">
+          <div class="w3-section">
+            <input id="updateidSamsung" type="hidden">
+            <label><b>Name</b></label>
+            <input id="updatenameSamsung" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Name" name="addname" 
+             required>
+            <label><b>Price</b></label>
+            <input id="updatePriceSamsung" class="w3-input w3-border" type="text" placeholder="Enter  Price" name="addprice" 
+             required>
+             <button id="UpdateSamsungRecord" class="btn btn-primary" >Add Record</button>
+             </div>
+            </div>
+</div>
+    <div id="addSamsungid01" class="w3-modal">
+      <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+  
+        <div class="w3-center"><br>
+          <span onclick="document.getElementById('addSamsungid01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+          <Label style="font-size:larger; font-weight: bold;" >Add New Record</Label>
+        </div>
+  
+        <form class="w3-container">
+          <div class="w3-section">
+            <input id="addidSamsung" type="hidden">
+            <label><b>Name</b></label>
+            <input id="addnameSamsung" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Name" name="addname" 
+             required>
+            <label><b>Price</b></label>
+            <input id="addPriceSamsung" class="w3-input w3-border" type="text" placeholder="Enter  Price" name="addprice" 
+             required>
+             <label><b>Picture</b></label>
+            <input id="addPictureSamsung" class="w3-input w3-border w3-margin-bottom" type="url" placeholder="Enter URL of Picture" name="addPictureSamsung" 
+             required>
+            <label><b>Technology</b></label>
+            <input id="addTechnologySamsung" class="w3-input w3-border" type="text" placeholder="Enter Technology" name="addTechnologySamsung" 
+             required>
+             <label><b>Announced</b></label>
+            <input id="addAnnouncedSamsung" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Announced Date" name="addAnnouncedSamsung" 
+             required>
+            <label><b>Dimension</b></label>
+            <input id="addDimensionSamsung" class="w3-input w3-border" type="text" placeholder="Enter Dimensions" name="addDimensionsSamsung" 
+             required>
+             <label><b>Build</b></label>
+            <input id="addBuildSamsung" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Build" name="addBuildSamsung" 
+             required>
+            <label><b>Weight</b></label>
+            <input id="addWeightSamsung" class="w3-input w3-border" type="text" placeholder="Enter Weight" name="addWeightSamsung" 
+             required>
+             <label><b>Sim</b></label>
+            <input id="addSimSamsung" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Sim Details" name="addSimSamsung" 
+             required>
+            <label><b>Display Type</b></label>
+            <input id="addDisplayTypeSamsung" class="w3-input w3-border" type="text" placeholder="Enter Display Type" name="addDisplayTypeSamsung" 
+             required>
+             <label><b>Display Size</b></label>
+            <input id="addDisplaySizeSamsung" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Display Size" name="addDisplaySizeSamsung" 
+             required>
+            <label><b>Resolution</b></label>
+            <input id="addResolutionSamsung" class="w3-input w3-border" type="text" placeholder="Enter Resolution" name="addResolutionSamsung" 
+             required>
+             <label><b>Os</b></label>
+            <input id="addOsSamsung" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter OS" name="addOsSamsung" 
+             required>
+            <label><b>Chipset</b></label>
+            <input id="addChipsetSamsung" class="w3-input w3-border" type="text" placeholder="Enter Chipset" name="addChipsetSamsung" 
+             required>
+             <label><b>CPU</b></label>
+            <input id="addCPUSamsung" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter CPU" name="addCPUSamsung" 
+             required>
+            <label><b>GPU</b></label>
+            <input id="addGPUSamsung" class="w3-input w3-border" type="text" placeholder="Enter GPU" name="addGPUSamsung" 
+             required>
+             <label><b>CardSlot</b></label>
+            <input id="addCardSlotSamsung" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter CardSlot" name="addCardSlotSamsung" 
+             required>
+            <label><b>Internal Storage</b></label>
+            <input id="addInternalStorageSamsung" class="w3-input w3-border" type="text" placeholder="Enter Internal Storage" name="addInternalStorageSamsung" 
+             required>
+             <label><b>Main Camera</b></label>
+            <input id="addMainCameraSamsung" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Main Camera Details" name="addMainCameraSamsung" 
+             required>
+            <label><b>Main Camera Features</b></label>
+            <input id="addMainCameraFeaturesSamsung" class="w3-input w3-border" type="text" placeholder="Enter Main Camera Features" name="addMainCameraFeaturesSamsung" 
+             required>
+             <label><b>Main Camera Video</b></label>
+            <input id="addMainCameraVideoSamsung" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Main Camera Video Details" name="addMainCameraVideoSamsung" 
+             required>
+            <label><b>Selfie Camera</b></label>
+            <input id="addSelfieCameraSamsung" class="w3-input w3-border" type="text" placeholder="Enter Selfie Camera Details" name="addSelfieCameraSamsung" 
+             required>
+             <label><b>Selfie Camera Features</b></label>
+            <input id="addSelfieCameraFeaturesSamsung" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Selfie Camera Features" name="addSelfieCameraFeaturesSamsung" 
+             required>
+            <label><b>Selfie Camera Video</b></label>
+            <input id="addSelfieCameraVideoSamsung" class="w3-input w3-border" type="text" placeholder="Enter Selfie Camera Video Details" name="addSelfieCameraVideoSamsung" 
+             required>
+             <label><b>Sound</b></label>
+            <input id="addSoundsSamsung" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Sound Details" name="addSoundsSamsung" 
+             required>
+             <label><b>WLAN</b></label>
+            <input id="addCommsSamsung" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter WLAN" name="addCommsSamsung" 
+             required>
+            <label><b>Sensor Features</b></label>
+            <input id="addSensorFeaturesSamsung" class="w3-input w3-border" type="text" placeholder="Enter Sensor Features" name="addSensorFeaturesSamsung" 
+             required>
+             <label><b>Battery</b></label>
+            <input id="addBatterySamsung" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Battery Details" name="addBatterySamsung" 
+             required>
+            <label><b>Charging</b></label>
+            <input id="addChargingSamsung" class="w3-input w3-border" type="text" placeholder="Enter Charging Details" name="addChargingSamsung" 
+             required>
+             <label><b>Bluetooth</b></label>
+            <input id="addBluetoothSamsung" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Bluetooth DEtails" name="addBluetoothSamsung" 
+             required>
+            <label><b>NFC</b></label>
+            <input id="addNFCSamsung" class="w3-input w3-border" type="text" placeholder="Enter NFC Details" name="addNFCSamsung" 
+             required>
+             <label><b>Radio</b></label>
+            <input id="addRadioSamsung" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Radio Details" name="addRadioSamsung" 
+             required>
+            <label><b>GPS</b></label>
+            <input id="addGPSSamsung" class="w3-input w3-border" type="text" placeholder="Enter GPS Details" name="addGPSSamsung" 
+             required>
+             <label><b>Colors</b></label>
+            <input id="addColorsSamsung" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Colors" name="addColorsSamsung" 
+             required>
+            <button id="AddSamsungRecord" class="btn btn-primary" >Add Record</button>
+          </div>
+        </form>
+      </div>
+    </div>
+ 
+    </div>
+   
+    </div>
+    
+  
+    <div class="footer">
+      <p>Designed by Abeer Ahmed</p>
+      <img src="/images/me.jpg" style="height: 150px;" alt="">
+    <div class="floatleft">
+      <p>Visit us at:</p>
+      <a href="https://www.facebook.com/" target="_blank">
+      <img src="/images/fb.jpg" >
+      </a>
+      <a href="https://www.twitter.com/" target="_blank">
+      <img src="/images/twitter.jpg" >
+      </a>
+      <a href="https://www.instagram.com/" target="_blank">
+      <img src="/images/insta.jpg" >
+      </a>
+    </div>
+      <p>Copyright © AbeerTech 2021</p>
+    </div>  
+  </body>
+</html>
