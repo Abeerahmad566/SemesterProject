@@ -4,7 +4,7 @@ $(function () {
   $("#Apple").on("click", ".deleteApple", handleDeleteApple);
   $("#AddAppleRecord").click(addRecordApple);
   $("#login").click(login);
-  $("#logout").click(logout)
+  $("#logout").click(logout);
   $(".gosomewherelp").click(loadlatestiph);
   $(".gosomewherenok").click(loadlatestnok);
   $(".gosomewheres21").click(loadlatestsam);
@@ -76,12 +76,14 @@ function token()
     $(".btn-info").show();
     $("#login").hide();
     $("#logout").show();
+  
   }
   if(!isloggedin)
   {
     $(".btn-info").hide();
     $("#login").show();
   $("#logout").hide();
+
 }
 }
 function login()
@@ -92,12 +94,9 @@ function login()
     url:"https://abeertech-serverside.herokuapp.com/api/users/login",
     method:"POST",
     data:{email ,password },
-    error: function(response) {
-      alert(response.responseText)
-    },
+    
     success:function(response){
       window.localStorage.setItem("token",response);
-      console.log(response);
       window.location.replace("http://127.0.0.1:5501/MainPages/main.html");
   
 
@@ -105,30 +104,7 @@ function login()
     }
 });
 }
-function Register()
-{
-  var name = $("#name").val();
-  var email =$("#email").val();
-  var password = $("#password").val();
-  
-  $.ajax({
-          url:"https://abeertech-serverside.herokuapp.com/api/Users/Register",
-          method:"POST",
-          data:{ name,email ,password },
-          error: function() {
-          },
-          success:function(){
-            $( "div.addUser" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
-           $("#name").val("");
-           $("#email").val("");
-           $("#password").val("");
-           
-           
-          }
-          
-  });
-  
-}
+
 function addRecordApple()
 {
   document.getElementById('UpdateAppleid01').style.display='block';
@@ -170,8 +146,8 @@ function addRecordApple()
           url:"https://abeertech-serverside.herokuapp.com/api/Apple",
           method:"POST",
           data:{ name, Price,picture,technology,Announced,Dimension,Weight,Build,Sim,Type,Size,Resolution,Os,Chipset,Cpu,Gpu,FrontCamera,CardSlot,Internal,Camera,Sound,Comms,Features,Battery,Colors,mcamFeatures,mcamVideo,ScamFeatures,ScamVideo,Bluetooth,NFC,Radio,GPS,Charging },
-          success:function(response){
-            console.log(response);
+         
+          success:function(){
            $( "div.addrecord" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
             
           }
@@ -182,6 +158,7 @@ function loadApple() {
   $.ajax({
     url: "https://abeertech-serverside.herokuapp.com/api/Apple",
     method: "GET",
+    
     success: function(response) {
       var phones
        = $("#Apple");
@@ -203,19 +180,17 @@ function loadApple() {
 }
 function loadonIDApple(id)
   {
-
    if(isloggedin)
    {
-  
     $.ajax({
       url: "https://abeertech-serverside.herokuapp.com/api/Apple/"+id,
       method: "GET",
+      
       success: function(response) {
         var phones
          = $("#Apple");
         phones
         .empty();
-        console.log(response._id);
         phones
         .append(
           "<div class='PicturesPhoneApple ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><button  class='btn btn-danger btn-sm float-right deleteApple'>delete</button><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
@@ -228,12 +203,12 @@ function loadonIDApple(id)
     $.ajax({
       url: "https://abeertech-serverside.herokuapp.com/api/Apple/"+id,
       method: "GET",
+      
       success: function(response) {
         var phones
          = $("#Apple");
         phones
         .empty();
-        console.log(response._id);
         phones
         .append(
           "<div class='PicturesPhoneApple ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
@@ -246,70 +221,71 @@ function handleDeleteApple() {
     var btn = $(this);
     var parentDiv = btn.closest(".PicturesPhoneApple  ");
     let id = parentDiv.attr("data-id");
-    console.log(id);
     $.ajax({
       url: "https://abeertech-serverside.herokuapp.com/api/Apple/" + id,
       method: "DELETE",
+      
       success: function() {
         $( "div.delete" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
         loadApple();
       }
     });
   }
-  function loadlatestiph()
+function loadlatestiph()
   {
     $.ajax({
-      url: "https://abeertech-serverside.herokuapp.com/api/Apple/60d2482f4c07e82e6e83ffc6",
+      url: "https://abeertech-serverside.herokuapp.com/api/Apple/60d62713d736e2a02c66af0b",
       method: "GET",
+      
       success: function(response) {
         var phones = $("#mainpage");
         phones.empty();
-        console.log(response._id);
+     
         phones.append(
           "<div class='PicturesPhone' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
         );     
   }
 });
   }
-  function loadlatestnov()
+function loadlatestnov()
   {
     $.ajax({
       url: "https://abeertech-serverside.herokuapp.com/api/Huawei/60d0e81c092df0ff776e1dd5",
       method: "GET",
+      
       success: function(response) {
         var phones = $("#mainpage");
         phones.empty();
-        console.log(response._id);
         phones.append(
           "<div class='PicturesPhone' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
         );     
   }
 });
   }
-  function loadlatestnok()
+function loadlatestnok()
   {
     $.ajax({
       url: "https://abeertech-serverside.herokuapp.com/api/Nokia/60d0e899092df0ff776e1dd6",
       method: "GET",
+      
       success: function(response) {
         var phones = $("#mainpage");
         phones.empty();
-        console.log(response._id);
         phones.append(
           "<div class='PicturesPhone' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
         );     
   }
 });
   }
-  function loadlatestonep()
+function loadlatestonep()
   {
     $.ajax({
       url: "https://abeertech-serverside.herokuapp.com/api/Oneplus/60d0e940092df0ff776e1dda",
       method: "GET",
+      
       success: function(response) {
         var phones = $("#mainpage");
         phones.empty();
-        console.log(response._id);
         phones.append(
           "<div class='PicturesPhone' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
         );     
@@ -321,25 +297,26 @@ function handleDeleteApple() {
     $.ajax({
       url: "https://abeertech-serverside.herokuapp.com/api/Asus/60d24ca74c07e82e6e83ffc7",
       method: "GET",
+      
       success: function(response) {
         var phones = $("#mainpage");
         phones.empty();
-        console.log(response._id);
+        
         phones.append(
           "<div class='PicturesPhone' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
         );     
   }
 });
   }
-  function loadlatestsam()
+function loadlatestsam()
   {
     $.ajax({
-      url: "https://abeertech-serverside.herokuapp.com/api/Samsung/60cf3443111ebe26c3af36ed",
+      url: "https://abeertech-serverside.herokuapp.com/api/Samsung/60d6557e79a7d884f7c45533",
       method: "GET",
+      
       success: function(response) {
         var phones = $("#mainpage");
         phones.empty();
-        console.log(response._id);
         phones.append(
           "<div class='PicturesPhone' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
         );     
@@ -386,6 +363,7 @@ function handleDeleteApple() {
           url:"https://abeertech-serverside.herokuapp.com/api/Asus",
           method:"POST",
           data:{ name, Price,picture,technology,Announced,Dimension,Weight,Build,Sim,Type,Size,Resolution,Os,Chipset,Cpu,Gpu,FrontCamera,CardSlot,Internal,Camera,Sound,Comms,Features,Battery,Colors,mcamFeatures,mcamVideo,ScamFeatures,ScamVideo,Bluetooth,NFC,Radio,GPS,Charging },
+         
           success:function(){
            $( "div.addrecord" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
             
@@ -397,6 +375,7 @@ function handleDeleteApple() {
     $.ajax({
       url: "https://abeertech-serverside.herokuapp.com/api/Asus",
       method: "GET",
+      
       success: function(response) {
         var phones = $("#Asus");
         phones.empty();
@@ -417,17 +396,17 @@ function handleDeleteApple() {
       }
     });
   }
-  function loadonIDAsus(id)
+function loadonIDAsus(id)
     {
       if(isloggedin)
       {
         $.ajax({
         url: "https://abeertech-serverside.herokuapp.com/api/Asus/"+id,
         method: "GET",
+        
         success: function(response) {
           var phones = $("#Asus");
           phones.empty();
-          console.log(response._id);
           phones.append(
             "<div class='PicturesPhoneAsus ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><button  class='btn btn-danger btn-sm float-right deleteAsus'>delete</button><button class='btn btn-warning btn-sm float-right editAsus'>Edit</button><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
           );     
@@ -442,7 +421,6 @@ if(!isloggedin)
     success: function(response) {
       var phones = $("#Asus");
       phones.empty();
-      console.log(response._id);
       phones.append(
         "<div class='PicturesPhoneAsus ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
       );     
@@ -451,7 +429,7 @@ if(!isloggedin)
 }
     }
     
-  function handleDeleteAsus() {
+function handleDeleteAsus() {
       var btn = $(this);
       var parentDiv = btn.closest(".PicturesPhoneAsus  ");
       let id = parentDiv.attr("data-id");
@@ -459,6 +437,7 @@ if(!isloggedin)
       $.ajax({
         url: "https://abeertech-serverside.herokuapp.com/api/Asus/" + id,
         method: "DELETE",
+        
         success: function() {
           $( "div.delete" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
           loadAsus();
@@ -506,8 +485,8 @@ function addRecordGoogle()
               url:"https://abeertech-serverside.herokuapp.com/api/Google",
               method:"POST",
               data:{ name, Price,picture,technology,Announced,Dimension,Weight,Build,Sim,Type,Size,Resolution,Os,Chipset,Cpu,Gpu,FrontCamera,CardSlot,Internal,Camera,Sound,Comms,Features,Battery,Colors,mcamFeatures,mcamVideo,ScamFeatures,ScamVideo,Bluetooth,NFC,Radio,GPS,Charging },
+              
               success:function(response){
-                console.log(response);
                $( "div.addrecord" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
                 
               }
@@ -519,6 +498,7 @@ function loadGoogle() {
       $.ajax({
         url: "https://abeertech-serverside.herokuapp.com/api/Google",
         method: "GET",
+        
         success: function(response) {
           var phones = $("#Google");
           phones.empty();
@@ -546,10 +526,10 @@ function loadonIDGoogle(id)
         $.ajax({
           url: "https://abeertech-serverside.herokuapp.com/api/Google/"+id,
           method: "GET",
+         
           success: function(response) {
             var phones = $("#Google");
             phones.empty();
-            console.log(response._id);
             phones.append(
               "<div class='PicturesPhoneGoogle ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><button  class='btn btn-danger btn-sm float-right deleteGoogle'>delete</button><button class='btn btn-warning btn-sm float-right editGoogle'>Edit</button><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
             );     
@@ -561,10 +541,10 @@ if(!isloggedin)
   $.ajax({
     url: "https://abeertech-serverside.herokuapp.com/api/Google/"+id,
     method: "GET",
+    
     success: function(response) {
       var phones = $("#Google");
       phones.empty();
-      console.log(response._id);
       phones.append(
         "<div class='PicturesPhoneGoogle ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
       );     
@@ -580,6 +560,7 @@ function handleDeleteGoogle() {
         $.ajax({
           url: "https://abeertech-serverside.herokuapp.com/api/Google/" + id,
           method: "DELETE",
+         
           success: function() {
             $( "div.delete" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
             loadGoogle();
@@ -626,8 +607,9 @@ function addRecordHtc()
                 url:"https://abeertech-serverside.herokuapp.com/api/Htc",
                 method:"POST",
                 data:{ name, Price,picture,technology,Announced,Dimension,Weight,Build,Sim,Type,Size,Resolution,Os,Chipset,Cpu,Gpu,FrontCamera,CardSlot,Internal,Camera,Sound,Comms,Features,Battery,Colors,mcamFeatures,mcamVideo,ScamFeatures,ScamVideo,Bluetooth,NFC,Radio,GPS,Charging },
+                
                 success:function(response){
-                  console.log(response);
+                  
                  $( "div.addrecord" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
                   
                 }
@@ -639,6 +621,7 @@ function loadHtc() {
         $.ajax({
           url: "https://abeertech-serverside.herokuapp.com/api/Htc",
           method: "GET",
+         
           success: function(response) {
             var phones = $("#Htc");
             phones.empty();
@@ -666,10 +649,10 @@ if(isloggedin)
           $.ajax({
             url: "https://abeertech-serverside.herokuapp.com/api/Htc/"+id,
             method: "GET",
+            
             success: function(response) {
               var phones = $("#Htc");
               phones.empty();
-              console.log(response._id);
               phones.append(
                 "<div class='PicturesPhoneHtc ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><button  class='btn btn-danger btn-sm float-right deleteHtc'>delete</button><button class='btn btn-warning btn-sm float-right editHtc'>Edit</button><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
               );     
@@ -682,10 +665,11 @@ if(!isloggedin)
       $.ajax({
         url: "https://abeertech-serverside.herokuapp.com/api/Htc/"+id,
         method: "GET",
+        
         success: function(response) {
           var phones = $("#Htc");
           phones.empty();
-          console.log(response._id);
+          
           phones.append(
             "<div class='PicturesPhoneHtc ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
           );     
@@ -748,8 +732,8 @@ function addRecordHuawei()
                   url:"https://abeertech-serverside.herokuapp.com/api/Huawei",
                   method:"POST",
                   data:{ name, Price,picture,technology,Announced,Dimension,Weight,Build,Sim,Type,Size,Resolution,Os,Chipset,Cpu,Gpu,FrontCamera,CardSlot,Internal,Camera,Sound,Comms,Features,Battery,Colors,mcamFeatures,mcamVideo,ScamFeatures,ScamVideo,Bluetooth,NFC,Radio,GPS,Charging },
+                 
                   success:function(response){
-                    console.log(response);
                    $( "div.addrecord" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
                     
                   }
@@ -761,6 +745,7 @@ function loadHuawei() {
           $.ajax({
             url: "https://abeertech-serverside.herokuapp.com/api/Huawei",
             method: "GET",
+           
             success: function(response) {
               var phones = $("#Huawei");
               phones.empty();
@@ -788,6 +773,7 @@ if(isloggedin)
     $.ajax({
               url: "https://abeertech-serverside.herokuapp.com/api/Huawei/"+id,
               method: "GET",
+              
               success: function(response) {
                 var phones = $("#Huawei");
                 phones.empty();
@@ -803,6 +789,7 @@ if(!isloggedin)
     $.ajax({
               url: "https://abeertech-serverside.herokuapp.com/api/Huawei/"+id,
               method: "GET",
+              
               success: function(response) {
                 var phones = $("#Huawei");
                 phones.empty();
@@ -823,6 +810,7 @@ function handleDeleteHuawei() {
             $.ajax({
               url: "https://abeertech-serverside.herokuapp.com/api/Huawei/" + id,
               method: "DELETE",
+              
               success: function() {
                 $( "div.delete" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
                 loadHuawei();
@@ -869,6 +857,7 @@ function addRecordLenovo()
                     url:"https://abeertech-serverside.herokuapp.com/api/Lenovo",
                     method:"POST",
                     data:{ name, Price,picture,technology,Announced,Dimension,Weight,Build,Sim,Type,Size,Resolution,Os,Chipset,Cpu,Gpu,FrontCamera,CardSlot,Internal,Camera,Sound,Comms,Features,Battery,Colors,mcamFeatures,mcamVideo,ScamFeatures,ScamVideo,Bluetooth,NFC,Radio,GPS,Charging },
+                  
                     success:function(){
                     
                      $( "div.addrecord" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
@@ -882,6 +871,7 @@ function loadLenovo() {
             $.ajax({
               url: "https://abeertech-serverside.herokuapp.com/api/Lenovo",
               method: "GET",
+              
               success: function(response) {
                 var phones = $("#Lenovo");
                 phones.empty();
@@ -907,6 +897,7 @@ function loadonIDLenovo(id)
       $.ajax({
                 url: "https://abeertech-serverside.herokuapp.com/api/Lenovo/"+id,
                 method: "GET",
+                
                 success: function(response) {
                   var phones = $("#Lenovo");
                   phones.empty();
@@ -922,6 +913,7 @@ function loadonIDLenovo(id)
       $.ajax({
                 url: "https://abeertech-serverside.herokuapp.com/api/Lenovo/"+id,
                 method: "GET",
+                
                 success: function(response) {
                   var phones = $("#Lenovo");
                   phones.empty();
@@ -940,6 +932,7 @@ function handleDeleteLenovo() {
               $.ajax({
                 url: "https://abeertech-serverside.herokuapp.com/api/Lenovo/" + id,
                 method: "DELETE",
+                
                 success: function() {
                   $( "div.delete" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
                   loadLenovo();
@@ -986,6 +979,7 @@ function handleDeleteLenovo() {
           url:"https://abeertech-serverside.herokuapp.com/api/LG",
           method:"POST",
           data:{ name, Price,picture,technology,Announced,Dimension,Weight,Build,Sim,Type,Size,Resolution,Os,Chipset,Cpu,Gpu,FrontCamera,CardSlot,Internal,Camera,Sound,Comms,Features,Battery,Colors,mcamFeatures,mcamVideo,ScamFeatures,ScamVideo,Bluetooth,NFC,Radio,GPS,Charging },
+         
           success:function(){
            
            $( "div.addrecord" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
@@ -999,6 +993,7 @@ function loadLG() {
   $.ajax({
     url: "https://abeertech-serverside.herokuapp.com/api/LG",
     method: "GET",
+    
     success: function(response) {
       var phones = $("#LG");
       phones.empty();
@@ -1027,10 +1022,11 @@ function loadonIDLG(id)
         $.ajax({
           url: "https://abeertech-serverside.herokuapp.com/api/LG/"+id,
           method: "GET",
+         
           success: function(response) {
             var phones = $("#LG");
             phones.empty();
-            console.log(response._id);
+            
             phones.append(
               "<div class='PicturesPhoneLG ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><button  class='btn btn-danger btn-sm float-right deleteLG'>delete</button><button class='btn btn-warning btn-sm float-right editLG'>Edit</button><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
             );     
@@ -1042,10 +1038,11 @@ function loadonIDLG(id)
         $.ajax({
           url: "https://abeertech-serverside.herokuapp.com/api/LG/"+id,
           method: "GET",
+         
           success: function(response) {
             var phones = $("#LG");
             phones.empty();
-            console.log(response._id);
+          
             phones.append(
               "<div class='PicturesPhoneLG ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
             );     
@@ -1063,6 +1060,7 @@ function handleDeleteLG() {
     $.ajax({
       url: "https://abeertech-serverside.herokuapp.com/api/LG/" + id,
       method: "DELETE",
+      
       success: function() {
         $( "div.delete" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
         loadLG();
@@ -1109,6 +1107,7 @@ function addRecordMotorola()
           url:"https://abeertech-serverside.herokuapp.com/api/Motorola",
           method:"POST",
           data:{ name, Price,picture,technology,Announced,Dimension,Weight,Build,Sim,Type,Size,Resolution,Os,Chipset,Cpu,Gpu,FrontCamera,CardSlot,Internal,Camera,Sound,Comms,Features,Battery,Colors,mcamFeatures,mcamVideo,ScamFeatures,ScamVideo,Bluetooth,NFC,Radio,GPS,Charging },
+         
           success:function(){
            
            $( "div.addrecord" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
@@ -1122,6 +1121,7 @@ function loadMotorola() {
   $.ajax({
     url: "https://abeertech-serverside.herokuapp.com/api/Motorola",
     method: "GET",
+    
     success: function(response) {
       var phones = $("#Motorola");
       phones.empty();
@@ -1149,6 +1149,7 @@ function loadonIDMotorola(id)
       $.ajax({
         url: "https://abeertech-serverside.herokuapp.com/api/Motorola/"+id,
         method: "GET",
+        
         success: function(response) {
           var phones = $("#Motorola");
           phones.empty();
@@ -1164,6 +1165,7 @@ function loadonIDMotorola(id)
       $.ajax({
         url: "https://abeertech-serverside.herokuapp.com/api/Motorola/"+id,
         method: "GET",
+        
         success: function(response) {
           var phones = $("#Motorola");
           phones.empty();
@@ -1184,6 +1186,7 @@ function handleDeleteMotorola() {
     $.ajax({
       url: "https://abeertech-serverside.herokuapp.com/api/Motorola/" + id,
       method: "DELETE",
+      
       success: function() {
         $( "div.delete" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
         loadMotorola();
@@ -1243,6 +1246,7 @@ function loadNokia() {
   $.ajax({
     url: "https://abeertech-serverside.herokuapp.com/api/Nokia",
     method: "GET",
+    
     success: function(response) {
       var phones = $("#Nokia");
       phones.empty();
@@ -1270,10 +1274,10 @@ function loadonIDNokia(id)
       $.ajax({
         url: "https://abeertech-serverside.herokuapp.com/api/Nokia/"+id,
         method: "GET",
+        
         success: function(response) {
           var phones = $("#Nokia");
           phones.empty();
-          console.log(response._id);
           phones.append(
             "<div class='PicturesPhoneNokia ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><button  class='btn btn-danger btn-sm float-right deleteNokia'>delete</button><button class='btn btn-warning btn-sm float-right editNokia'>Edit</button><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
           );     
@@ -1285,10 +1289,10 @@ function loadonIDNokia(id)
       $.ajax({
         url: "https://abeertech-serverside.herokuapp.com/api/Nokia/"+id,
         method: "GET",
+        
         success: function(response) {
           var phones = $("#Nokia");
           phones.empty();
-          console.log(response._id);
           phones.append(
             "<div class='PicturesPhoneNokia ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
           );     
@@ -1351,6 +1355,7 @@ function addRecordOnePlus()
           url:"https://abeertech-serverside.herokuapp.com/api/OnePlus",
           method:"POST",
           data:{ name, Price,picture,technology,Announced,Dimension,Weight,Build,Sim,Type,Size,Resolution,Os,Chipset,Cpu,Gpu,FrontCamera,CardSlot,Internal,Camera,Sound,Comms,Features,Battery,Colors,mcamFeatures,mcamVideo,ScamFeatures,ScamVideo,Bluetooth,NFC,Radio,GPS,Charging },
+         
           success:function(){
            
            $( "div.addrecord" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
@@ -1364,6 +1369,7 @@ function loadOnePlus() {
   $.ajax({
     url: "https://abeertech-serverside.herokuapp.com/api/OnePlus",
     method: "GET",
+    
     success: function(response) {
       var phones = $("#OnePlus");
       phones.empty();
@@ -1391,6 +1397,7 @@ function loadonIDOnePlus(id)
       $.ajax({
         url: "https://abeertech-serverside.herokuapp.com/api/OnePlus/"+id,
         method: "GET",
+        
         success: function(response) {
           var phones = $("#OnePlus");
           phones.empty();
@@ -1406,6 +1413,7 @@ function loadonIDOnePlus(id)
       $.ajax({
         url: "https://abeertech-serverside.herokuapp.com/api/OnePlus/"+id,
         method: "GET",
+        
         success: function(response) {
           var phones = $("#OnePlus");
           phones.empty();
@@ -1426,6 +1434,7 @@ function handleDeleteOnePlus() {
     $.ajax({
       url: "https://abeertech-serverside.herokuapp.com/api/OnePlus/" + id,
       method: "DELETE",
+      
       success: function() {
         $( "div.delete" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
         loadOnePlus();
@@ -1472,6 +1481,7 @@ function addRecordOppo()
           url:"https://abeertech-serverside.herokuapp.com/api/Oppo",
           method:"POST",
           data:{ name, Price,picture,technology,Announced,Dimension,Weight,Build,Sim,Type,Size,Resolution,Os,Chipset,Cpu,Gpu,FrontCamera,CardSlot,Internal,Camera,Sound,Comms,Features,Battery,Colors,mcamFeatures,mcamVideo,ScamFeatures,ScamVideo,Bluetooth,NFC,Radio,GPS,Charging },
+         
           success:function(){
             
            $( "div.addrecord" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
@@ -1485,6 +1495,7 @@ function loadOppo() {
   $.ajax({
     url: "https://abeertech-serverside.herokuapp.com/api/Oppo",
     method: "GET",
+    
     success: function(response) {
       var phones = $("#Oppo");
       phones.empty();
@@ -1512,6 +1523,7 @@ function loadonIDOppo(id)
       $.ajax({
         url: "https://abeertech-serverside.herokuapp.com/api/Oppo/"+id,
         method: "GET",
+        
         success: function(response) {
           var phones = $("#Oppo");
           phones.empty();
@@ -1527,6 +1539,7 @@ function loadonIDOppo(id)
       $.ajax({
         url: "https://abeertech-serverside.herokuapp.com/api/Oppo/"+id,
         method: "GET",
+        
         success: function(response) {
           var phones = $("#Oppo");
           phones.empty();
@@ -1547,6 +1560,7 @@ function handleDeleteOppo() {
     $.ajax({
       url: "https://abeertech-serverside.herokuapp.com/api/Oppo/" + id,
       method: "DELETE",
+      
       success: function() {
         $( "div.delete" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
         loadOppo();
@@ -1593,6 +1607,7 @@ function addRecordPOCO()
           url:"https://abeertech-serverside.herokuapp.com/api/POCO",
           method:"POST",
           data:{ name, Price,picture,technology,Announced,Dimension,Weight,Build,Sim,Type,Size,Resolution,Os,Chipset,Cpu,Gpu,FrontCamera,CardSlot,Internal,Camera,Sound,Comms,Features,Battery,Colors,mcamFeatures,mcamVideo,ScamFeatures,ScamVideo,Bluetooth,NFC,Radio,GPS,Charging },
+         
           success:function(){
             
            $( "div.addrecord" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
@@ -1606,6 +1621,7 @@ function loadPOCO() {
   $.ajax({
     url: "https://abeertech-serverside.herokuapp.com/api/POCO",
     method: "GET",
+    
     success: function(response) {
       var phones = $("#POCO");
       phones.empty();
@@ -1632,6 +1648,7 @@ function loadonIDPOCO(id)
       $.ajax({
         url: "https://abeertech-serverside.herokuapp.com/api/POCO/"+id,
         method: "GET",
+        
         success: function(response) {
           var phones = $("#POCO");
           phones.empty();
@@ -1646,10 +1663,10 @@ function loadonIDPOCO(id)
       $.ajax({
         url: "https://abeertech-serverside.herokuapp.com/api/POCO/"+id,
         method: "GET",
+        
         success: function(response) {
           var phones = $("#POCO");
           phones.empty();
-          console.log(response._id);
           phones.append(
             "<div class='PicturesPhonePOCO ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
           );     
@@ -1664,6 +1681,7 @@ function handleDeletePOCO() {
     $.ajax({
       url: "https://abeertech-serverside.herokuapp.com/api/POCO/" + id,
       method: "DELETE",
+      
       success: function() {
         $( "div.delete" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
         loadPOCO();
@@ -1710,6 +1728,7 @@ function addRecordRealme()
           url:"https://abeertech-serverside.herokuapp.com/api/Realme",
           method:"POST",
           data:{ name, Price,picture,technology,Announced,Dimension,Weight,Build,Sim,Type,Size,Resolution,Os,Chipset,Cpu,Gpu,FrontCamera,CardSlot,Internal,Camera,Sound,Comms,Features,Battery,Colors,mcamFeatures,mcamVideo,ScamFeatures,ScamVideo,Bluetooth,NFC,Radio,GPS,Charging },
+         
           success:function(){
             
            $( "div.addrecord" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
@@ -1722,6 +1741,7 @@ function loadRealme() {
   $.ajax({
     url: "https://abeertech-serverside.herokuapp.com/api/Realme",
     method: "GET",
+    
     success: function(response) {
       var phones = $("#Realme");
       phones.empty(); 
@@ -1748,10 +1768,10 @@ function loadonIDRealme(id)
       $.ajax({
         url: "https://abeertech-serverside.herokuapp.com/api/Realme/"+id,
         method: "GET",
+        
         success: function(response) {
           var phones = $("#Realme");
           phones.empty();
-          console.log(response._id);
           phones.append(
             "<div class='PicturesPhoneRealme ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><button  class='btn btn-danger btn-sm float-right deleteRealme'>delete</button><button class='btn btn-warning btn-sm float-right editRealme'>Edit</button><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
           );     
@@ -1763,10 +1783,10 @@ function loadonIDRealme(id)
       $.ajax({
         url: "https://abeertech-serverside.herokuapp.com/api/Realme/"+id,
         method: "GET",
+        
         success: function(response) {
           var phones = $("#Realme");
           phones.empty();
-          console.log(response._id);
           phones.append(
             "<div class='PicturesPhoneRealme ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Technology</td><td>"+response.technology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
           );     
@@ -1828,6 +1848,7 @@ function addRecordSamsung()
           url:"https://abeertech-serverside.herokuapp.com/api/samsung",
           method:"POST",
           data:{ name, Price,picture,technology,Announced,Dimension,Weight,Build,Sim,Type,Size,Resolution,Os,Chipset,Cpu,Gpu,FrontCamera,CardSlot,Internal,Camera,Sound,Comms,Features,Battery,Colors,mcamFeatures,mcamVideo,ScamFeatures,ScamVideo,Bluetooth,NFC,Radio,GPS,Charging },
+         
           success:function(){
            
            $( "div.addrecord" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
@@ -1840,6 +1861,7 @@ function loadsamsung() {
   $.ajax({
     url: "https://abeertech-serverside.herokuapp.com/api/samsung",
     method: "GET",
+    
     success: function(response) {
       var phones = $("#Samsung");
       phones.empty();
@@ -1865,6 +1887,7 @@ function loadonIDSamsung(id)
       $.ajax({
         url: "https://abeertech-serverside.herokuapp.com/api/samsung/"+id,
         method: "GET",
+        
         success: function(response) {
           var phones = $("#Samsung");
           phones.empty();
@@ -1879,6 +1902,7 @@ function loadonIDSamsung(id)
       $.ajax({
         url: "https://abeertech-serverside.herokuapp.com/api/samsung/"+id,
         method: "GET",
+        
         success: function(response) {
           var phones = $("#Samsung");
           phones.empty();
@@ -1897,6 +1921,7 @@ function handleDeleteSamsung() {
     $.ajax({
       url: "https://abeertech-serverside.herokuapp.com/api/samsung/" + id,
       method: "DELETE",
+      
       success: function() {
         $( "div.delete" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
         loadsamsung();
@@ -1943,6 +1968,7 @@ function addRecordTechno()
           url:"https://abeertech-serverside.herokuapp.com/api/Techno",
           method:"POST",
           data:{ name, Price,picture,technology,Announced,Dimension,Weight,Build,Sim,Type,Size,Resolution,Os,Chipset,Cpu,Gpu,FrontCamera,CardSlot,Internal,Camera,Sound,Comms,Features,Battery,Colors,mcamFeatures,mcamVideo,ScamFeatures,ScamVideo,Bluetooth,NFC,Radio,GPS,Charging },
+         
           success:function(){
            $( "div.addrecord" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
             
@@ -1954,6 +1980,7 @@ function loadTechno() {
   $.ajax({
     url: "https://abeertech-serverside.herokuapp.com/api/Techno",
     method: "GET",
+    
     success: function(response) {
       var phones = $("#Techno");
       phones.empty();
@@ -1980,6 +2007,7 @@ function loadonIDTechno(id)
       $.ajax({
         url: "https://abeertech-serverside.herokuapp.com/api/Techno/"+id,
         method: "GET",
+        
         success: function(response) {
           var phones = $("#Techno");
           phones.empty();
@@ -1994,6 +2022,7 @@ function loadonIDTechno(id)
       $.ajax({
         url: "https://abeertech-serverside.herokuapp.com/api/Techno/"+id,
         method: "GET",
+        
         success: function(response) {
           var phones = $("#Techno");
           phones.empty();
@@ -2012,6 +2041,7 @@ function handleDeleteTechno() {
     $.ajax({
       url: "https://abeertech-serverside.herokuapp.com/api/Techno/" + id,
       method: "DELETE",
+    
       success: function() {
         $( "div.delete" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
         loadTechno();
@@ -2059,6 +2089,7 @@ function addRecordVivo()
           url:"https://abeertech-serverside.herokuapp.com/api/Vivo",
           method:"POST",
           data:{ name, Price,picture,Vivology,Announced,Dimension,Weight,Build,Sim,Type,Size,Resolution,Os,Chipset,Cpu,Gpu,FrontCamera,CardSlot,Internal,Camera,Sound,Comms,Features,Battery,Colors,mcamFeatures,mcamVideo,ScamFeatures,ScamVideo,Bluetooth,NFC,Radio,GPS,Charging },
+         
           success:function(){
            $( "div.addrecord" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
             
@@ -2070,6 +2101,7 @@ function loadVivo() {
   $.ajax({
     url: "https://abeertech-serverside.herokuapp.com/api/Vivo",
     method: "GET",
+    
     success: function(response) {
       var phones = $("#Vivo");
       phones.empty();
@@ -2089,37 +2121,41 @@ function loadVivo() {
     }
   });
 }
+
 function loadonIDVivo(id)
-  {
-    if(isloggedin)
-    {
-      $.ajax({
-        url: "https://abeertech-serverside.herokuapp.com/api/Vivo/"+id,
-        method: "GET",
-        success: function(response) {
-          var phones = $("#Vivo");
-          phones.empty();
-          phones.append(
-            "<div class='PicturesPhoneVivo ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><button  class='btn btn-danger btn-sm float-right deleteVivo'>delete</button><button class='btn btn-warning btn-sm float-right editVivo'>Edit</button><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Vivology</td><td>"+response.Vivology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
-          );     
-    }
-  });
-    }
-    if(!isloggedin)
-    {
-      $.ajax({
-        url: "https://abeertech-serverside.herokuapp.com/api/Vivo/"+id,
-        method: "GET",
-        success: function(response) {
-          var phones = $("#Vivo");
-          phones.empty();
-          phones.append(
-            "<div class='PicturesPhoneVivo ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Vivology</td><td>"+response.Vivology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
-          );     
-    }
-  });
-    }
-  }
+{
+ 
+if(isloggedin)
+ {
+  $.ajax({
+    url: "https://abeertech-serverside.herokuapp.com/api/Vivo/"+id,
+    method: "GET",
+    success: function(response) {
+      var phones = $("#Vivo");
+      phones.empty();
+      console.log(response._id);
+      phones.append(
+        "<div class='PicturesPhoneVivo ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><button  class='btn btn-danger btn-sm float-right deleteVivo'>delete</button><button class='btn btn-warning btn-sm float-right editVivo'>Edit</button><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Vivology</td><td>"+response.Vivology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
+      );     
+}
+});
+ }
+ if(!isloggedin)
+ {
+  $.ajax({
+    url: "https://abeertech-serverside.herokuapp.com/api/Vivo/"+id,
+    method: "GET",
+    success: function(response) {
+      var phones = $("#Vivo");
+      phones.empty();
+      console.log(response._id);
+      phones.append(
+        "<div class='PicturesPhoneVivo ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Vivology</td><td>"+response.Vivology+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
+      );     
+}
+});
+ }
+}
   
 function handleDeleteVivo() {
     var btn = $(this);
@@ -2128,6 +2164,7 @@ function handleDeleteVivo() {
     $.ajax({
       url: "https://abeertech-serverside.herokuapp.com/api/Vivo/" + id,
       method: "DELETE",
+      
       success: function() {
         $( "div.delete" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
         loadVivo();
@@ -2174,6 +2211,7 @@ function addRecordXiaomi()
           url:"https://abeertech-serverside.herokuapp.com/api/Xiaomi",
           method:"POST",
           data:{ name, Price,picture,Xiaomilogy,Announced,Dimension,Weight,Build,Sim,Type,Size,Resolution,Os,Chipset,Cpu,Gpu,FrontCamera,CardSlot,Internal,Camera,Sound,Comms,Features,Battery,Colors,mcamFeatures,mcamVideo,ScamFeatures,ScamVideo,Bluetooth,NFC,Radio,GPS,Charging },
+         
           success:function(){
            $( "div.addrecord" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
             
@@ -2185,6 +2223,7 @@ function loadXiaomi() {
   $.ajax({
     url: "https://abeertech-serverside.herokuapp.com/api/Xiaomi",
     method: "GET",
+    
     success: function(response) {
       var phones = $("#Xiaomi");
       phones.empty();
@@ -2211,10 +2250,10 @@ function loadonIDXiaomi(id)
       $.ajax({
         url: "https://abeertech-serverside.herokuapp.com/api/Xiaomi/"+id,
         method: "GET",
+        
         success: function(response) {
           var phones = $("#Xiaomi");
           phones.empty();
-          console.log(response._id);
           phones.append(
             "<div class='PicturesPhoneXiaomi ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><button  class='btn btn-danger btn-sm float-right deleteXiaomi'>delete</button><button class='btn btn-warning btn-sm float-right editXiaomi'>Edit</button><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Xiaomilogy</td><td>"+response.Xiaomilogy+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
           );     
@@ -2226,10 +2265,10 @@ function loadonIDXiaomi(id)
       $.ajax({
         url: "https://abeertech-serverside.herokuapp.com/api/Xiaomi/"+id,
         method: "GET",
+        
         success: function(response) {
           var phones = $("#Xiaomi");
           phones.empty();
-          console.log(response._id);
           phones.append(
             "<div class='PicturesPhoneXiaomi ' data-id="+response._id+"><h3>"+response.name+"</h3><img src="+response.picture+"><h5>Price:"+response.Price+"</h5><table class='table-bordered'><tbody><tr><th>Network</th><td id='idwidth'>Xiaomilogy</td><td>"+response.Xiaomilogy+"</td></tr><tr><th>Lanuch</th><td id='idwidth'>Announced</td><td>"+response.Announced+"</td></tr><tr><th>Body</th><td id='idwidth'>Dimension</td><td>"+response.Dimension+"</td></tr><tr><th></th><td id='idwidth'>Weight</td><td>"+response.Weight+"</td></tr><tr><th></th><td id='idwidth'>Build</td><td>"+response.Build+"</td></tr><tr><th></th><td id='idwidth'>Sim</td><td>"+response.Sim+"</td></tr><tr><th>Display</th><td id='idwidth'>Type</td><td>"+response.Type+"</td></tr><tr><th></th><td id='idwidth'>Size</td><td>"+response.Size+"</td></tr><tr><th></th><td id='idwidth'>Resolution</td><td>"+response.Resolution+"</td></tr><tr><th>Platform</th><td id='idwidth'>Os</td><td>"+response.Os+"</td></tr><tr><th></th><td id='idwidth'>Chipset</td><td>"+response.Chipset+"</td></tr><tr><th></th><td id='idwidth'>Cpu</td><td>"+response.Cpu+"</td></tr><tr><th></th><td id='idwidth'>Gpu</td><td>"+response.Gpu+"</td></tr><tr><th>Memory</th><td id='idwidth'>CardSlot</td><td>"+response.CardSlot+"</td></tr><tr><th></th><td id='idwidth'>Internal</td><td>"+response.Internal  +"</td></tr><tr><th>Main Camera</th><td id='idwidth'>Camera</td><td>"+response.Camera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.mcamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.mcamVideo+"</td></tr><tr><th>Selfie Camera</th><td id='idwidth'>Front Camera</td><td>"+response.FrontCamera+"</td></tr><tr><th></th><td id='idwidth'>Features</td><td>"+response.ScamFeatures+"</td></tr><tr><th></th><td id='idwidth'>Video</td><td>"+response.ScamVideo+"</td></tr><tr><th>Sound System</th><td id='idwidth'>Sound</td><td>"+response.Sound+"</td></tr><tr><th>Comms</th><td id='idwidth'>WLAN</td><td>"+response.Comms+"</td></tr><tr><tr><th></th><td id='idwidth'>Bluetooth</td><td>"+response.Bluetooth+"</td></tr><tr><th></th><td id='idwidth'>GPS</td><td>"+response.GPS+"</td></tr><tr><th></th><td id='idwidth'>NFC</td><td>"+response.NFC+"</td></tr><tr><th></th><td id='idwidth'>Radio</td><td>"+response.Radio+"</td></tr><th>Features</th><td id='idwidth'>Sensors</td><td>"+response.Features+"</td></tr><tr><th>Battery</th><td id='idwidth'>Type</td><td>"+response.Battery+"</td></tr><tr><th></th><td id='idwidth'>Charging</td><td>"+response.Charging+"</td></tr><tr><th></th><td id='idwidth'>Colors</td><td>"+response.Colors+"</td></tr></tbody></table></div></div>"
           );     
@@ -2302,6 +2341,7 @@ function loadZTE() {
   $.ajax({
     url: "https://abeertech-serverside.herokuapp.com/api/ZTE",
     method: "GET",
+    
     success: function(response) {
       var phones = $("#ZTE");
       phones.empty();
@@ -2327,6 +2367,7 @@ function loadonIDZTE(id)
     $.ajax({
       url: "https://abeertech-serverside.herokuapp.com/api/ZTE/"+id,
       method: "GET",
+      
       success: function(response) {
         var phones = $("#ZTE");
         phones.empty();
@@ -2339,6 +2380,7 @@ if(!isloggedin)
     $.ajax({
       url: "https://abeertech-serverside.herokuapp.com/api/ZTE/"+id,
       method: "GET",
+      
       success: function(response) {
         var phones = $("#ZTE");
         phones.empty();
@@ -2356,6 +2398,7 @@ function handleDeleteZTE() {
     $.ajax({
       url: "https://abeertech-serverside.herokuapp.com/api/ZTE/" + id,
       method: "DELETE",
+      
       success: function() {
         $( "div.delete" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
         loadZTE();
