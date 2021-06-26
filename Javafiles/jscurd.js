@@ -105,6 +105,30 @@ function login()
     }
 });
 }
+function Register()
+{
+  var name = $("#name").val();
+  var email =$("#email").val();
+  var password = $("#password").val();
+  
+  $.ajax({
+          url:"https://abeertech-serverside.herokuapp.com/api/Users/Register",
+          method:"POST",
+          data:{ name,email ,password },
+          error: function() {
+          },
+          success:function(){
+            $( "div.addUser" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+           $("#name").val("");
+           $("#email").val("");
+           $("#password").val("");
+           
+           
+          }
+          
+  });
+  
+}
 function addRecordApple()
 {
   document.getElementById('UpdateAppleid01').style.display='block';
