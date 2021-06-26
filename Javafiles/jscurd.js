@@ -180,6 +180,7 @@ function loadApple() {
 }
 function loadonIDApple(id)
   {
+    $(".btn-info").hide();
    if(isloggedin)
    {
     $.ajax({
@@ -398,6 +399,7 @@ function loadlatestsam()
   }
 function loadonIDAsus(id)
     {
+      $(".btn-info").hide();
       if(isloggedin)
       {
         $.ajax({
@@ -521,6 +523,7 @@ function loadGoogle() {
     }
 function loadonIDGoogle(id)
   {
+    $(".btn-info").hide();
       if(isloggedin)
       {
         $.ajax({
@@ -644,6 +647,7 @@ function loadHtc() {
       }
 function loadonIDHtc(id)
 {
+  $(".btn-info").hide();
 if(isloggedin)
 {          
           $.ajax({
@@ -768,6 +772,7 @@ function loadHuawei() {
         }
 function loadonIDHuawei(id)
 {
+  $(".btn-info").hide();
 if(isloggedin)
 {           
     $.ajax({
@@ -892,6 +897,7 @@ function loadLenovo() {
 }
 function loadonIDLenovo(id)
 {
+  $(".btn-info").hide();
   if(isloggedin)
   {           
       $.ajax({
@@ -1016,6 +1022,7 @@ function loadLG() {
 }
 function loadonIDLG(id)
   {
+    $(".btn-info").hide();
     
     if(isloggedin)
       {
@@ -1144,6 +1151,7 @@ function loadMotorola() {
 }
 function loadonIDMotorola(id)
   {
+    $(".btn-info").hide();
     if(isloggedin)
     {
       $.ajax({
@@ -1269,6 +1277,7 @@ function loadNokia() {
 }
 function loadonIDNokia(id)
   {
+    $(".btn-info").hide();
     if(isloggedin)
     {
       $.ajax({
@@ -1392,6 +1401,7 @@ function loadOnePlus() {
 }
 function loadonIDOnePlus(id)
   {
+    $(".btn-info").hide();
     if(isloggedin)
     {
       $.ajax({
@@ -1518,6 +1528,7 @@ function loadOppo() {
 }
 function loadonIDOppo(id)
   {
+    $(".btn-info").hide();
     if(isloggedin)
     {
       $.ajax({
@@ -1643,6 +1654,7 @@ function loadPOCO() {
 }
 function loadonIDPOCO(id)
   {
+    $(".btn-info").hide();
     if(isloggedin)
     {
       $.ajax({
@@ -1763,6 +1775,7 @@ function loadRealme() {
 }
 function loadonIDRealme(id)
   {
+    $(".btn-info").hide();
     if(isloggedin)
     {
       $.ajax({
@@ -1882,6 +1895,7 @@ function loadsamsung() {
 }
 function loadonIDSamsung(id)
   {
+    $(".btn-info").hide();
     if(isloggedin)
     {
       $.ajax({
@@ -2002,6 +2016,7 @@ function loadTechno() {
 }
 function loadonIDTechno(id)
   {
+    $(".btn-info").hide();
     if(isloggedin)
     {
       $.ajax({
@@ -2124,6 +2139,7 @@ function loadVivo() {
 
 function loadonIDVivo(id)
 {
+  $(".btn-info").hide();
  
 if(isloggedin)
  {
@@ -2245,6 +2261,7 @@ function loadXiaomi() {
 }
 function loadonIDXiaomi(id)
   {
+    $(".btn-info").hide();
     if(isloggedin)
     {
       $.ajax({
@@ -2363,6 +2380,7 @@ function loadZTE() {
 }
 function loadonIDZTE(id)
   {
+    $(".btn-info").hide();
     if(isloggedin)
     $.ajax({
       url: "https://abeertech-serverside.herokuapp.com/api/ZTE/"+id,
